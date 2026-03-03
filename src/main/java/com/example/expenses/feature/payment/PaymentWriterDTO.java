@@ -1,5 +1,11 @@
 package com.example.expenses.feature.payment;
 
-public record PaymentWriterDTO() {
+import com.example.expenses.feature.type.Type;
+
+public record PaymentWriterDTO(
+    Long id,
+    String name,
+    Type type
+) {
     
 }

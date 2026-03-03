@@ -9,5 +9,5 @@ public record CategorieWriterDTO(
     @NotBlank(message = "Ingrese una descripcion breve")
     String description
 ) {
-    
+     
 }

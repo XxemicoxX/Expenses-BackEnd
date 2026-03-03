@@ -1,5 +1,7 @@
 package com.example.expenses.feature.categories;
 
+import com.example.expenses.util.Mapper;
+
 public class CategorieMapper implements Mapper<Categorie, CategorieWriterDTO, CategorieReaderDTO>{
     @Override
     public Categorie toEntity(CategorieWriterDTO dto){
