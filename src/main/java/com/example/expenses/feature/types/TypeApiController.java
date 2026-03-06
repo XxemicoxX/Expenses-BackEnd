@@ -1,4 +1,4 @@
-package com.example.expenses.feature.categories;
+package com.example.expenses.feature.types;
 
 import java.util.List;
 
@@ -14,56 +14,57 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
+
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("categorie") 
+@RequestMapping("type")
 @RequiredArgsConstructor
-public class CategorieApiController {
-    private final CategorieService categorieService;
+public class TypeApiController {
+    private final TypeService typeService;
 
     @GetMapping()
-    public ResponseEntity<List<CategorieReaderDTO>> getAll() {
-        List<CategorieReaderDTO> categories = categorieService.gtAllCategories();
-        if (categories.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NO_CONTENT, "No hay categories registrados");
+    public ResponseEntity<List<TypeReaderDTO>> getAll() {
+        List<TypeReaderDTO> types = typeService.gtAllTypes();
+        if (types.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NO_CONTENT, "No hay types registrados");
         }
-        return ResponseEntity.ok(categories);
+        return ResponseEntity.ok(types);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CategorieReaderDTO> getCategorie(@PathVariable Long id) {
+    public ResponseEntity<TypeReaderDTO> getType(@PathVariable Long id) {
         try {
-            return ResponseEntity.ok(categorieService.gtCategorieById(id));
+            return ResponseEntity.ok(typeService.gtTypeById(id));
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<CategorieReaderDTO> insertCategorie(@Valid @RequestBody CategorieWriterDTO categorie) {
+    public ResponseEntity<TypeReaderDTO> insertType(@Valid @RequestBody TypeWriterDTO type) {
         try {
-            return ResponseEntity.ok(categorieService.addCategorie(categorie));
+            return ResponseEntity.ok(typeService.addType(type));
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
         }
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<CategorieReaderDTO> updateCategorie(@Valid @RequestBody CategorieWriterDTO categorie) {
+    public ResponseEntity<TypeReaderDTO> updateType(@Valid @RequestBody TypeWriterDTO type) {
         try {
-            return ResponseEntity.ok(categorieService.updCategorie(categorie));
+            return ResponseEntity.ok(typeService.updType(type));
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
         }
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteCategorie(@PathVariable Long id) {
+    public ResponseEntity<String> deleteType(@PathVariable Long id) {
         try {
-            categorieService.dltCategorie(id);
-            return ResponseEntity.ok("categorie eliminado");
+            typeService.dltType(id);
+            return ResponseEntity.ok("type eliminado");
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
         }

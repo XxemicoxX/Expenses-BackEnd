@@ -1,4 +1,4 @@
-package com.example.expenses.feature.type;
+package com.example.expenses.feature.types;
 
 import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;

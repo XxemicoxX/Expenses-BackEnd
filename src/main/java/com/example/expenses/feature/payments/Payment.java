@@ -1,4 +1,6 @@
-package com.example.expenses.feature.payment;
+package com.example.expenses.feature.payments;
+
+import com.example.expenses.feature.types.Type;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -23,5 +25,5 @@ public class Payment {
      @Column(nullable = false, length = 50)
     private String name;
      @Column(nullable = false, length = 50)
-    private String type;
+    private Type type;
 }

@@ -21,3 +21,4 @@ public class CategorieMapper implements Mapper<Categorie, CategorieWriterDTO, Ca
         );
     }
 }
+ 

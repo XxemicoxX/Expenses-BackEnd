@@ -1,7 +1,7 @@
-package com.example.expenses.feature.payment;
+package com.example.expenses.feature.payments;
 
 
-import com.example.expenses.feature.type.Type;
+import com.example.expenses.feature.types.Type;
 
 import jakarta.validation.constraints.NotBlank;
 
