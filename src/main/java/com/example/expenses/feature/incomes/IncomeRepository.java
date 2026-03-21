@@ -1,9 +1,9 @@
-package com.example.expenses.feature.payments;
+package com.example.expenses.feature.incomes;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PaymentRepository extends JpaRepository<Payment, Long> {
+public interface IncomeRepository extends JpaRepository<Income, Long> {
 
 }

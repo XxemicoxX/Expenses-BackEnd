@@ -1,5 +1,27 @@
 package com.example.expenses.feature.payments;
+import org.springframework.stereotype.Component;
 
-public class PaymentMapper {
-    
+import com.example.expenses.feature.types.Type;
+import com.example.expenses.util.Mapper;
+
+@Component
+public class PaymentMapper implements Mapper<Payment, PaymentWriterDTO, PaymentReaderDTO> {
+
+    @Override
+    public Payment toEntity(PaymentWriterDTO dto) {
+        return Payment.builder()
+            .id(dto.id())
+            .name(dto.name())
+            .type(Type.builder().id(dto.type()).build())
+            .build();
+    }
+
+    @Override
+    public PaymentReaderDTO toDto(Payment entity) {
+        return new PaymentReaderDTO(
+            entity.getId(),
+            entity.getName(),
+            entity.getType().getId()
+        );
+    }
 }

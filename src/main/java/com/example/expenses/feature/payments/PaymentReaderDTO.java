@@ -1,16 +1,12 @@
 package com.example.expenses.feature.payments;
 
-
-import com.example.expenses.feature.types.Type;
-
-import jakarta.validation.constraints.NotBlank;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public record PaymentReaderDTO(
     Long id,
-    @NotBlank(message = "Debe ingresar el nombre")
     String name,
-    @NotBlank(message = "Ingrese un tipo de pago")
-    Type type
+    @JsonProperty("id_type")
+    Long type
 ) {
-    
+
 }

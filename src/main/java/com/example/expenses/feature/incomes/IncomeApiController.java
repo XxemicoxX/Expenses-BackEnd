@@ -1,4 +1,4 @@
-package com.example.expenses.feature.categories;
+package com.example.expenses.feature.incomes;
 
 import java.util.List;
 
@@ -14,58 +14,59 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
+
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("categorie") 
+@RequestMapping("income")
 @RequiredArgsConstructor
-public class CategorieApiController {
-    private final CategorieService categorieService;
+public class IncomeApiController {
+    private final IncomeService incomeService;
 
     @GetMapping()
-    public ResponseEntity<List<CategorieReaderDTO>> getAll() {
-        List<CategorieReaderDTO> categories = categorieService.gtAllCategories();
-        if (categories.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NO_CONTENT, "No hay categories registrados");
+    public ResponseEntity<List<IncomeReaderDTO>> getAll() {
+        List<IncomeReaderDTO> incomes = incomeService.gtAllIncomes();
+        if (incomes.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NO_CONTENT, "No hay incomes registrados");
         }
-        return ResponseEntity.ok(categories);
+        return ResponseEntity.ok(incomes);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CategorieReaderDTO> getCategorie(@PathVariable Long id) {
+    public ResponseEntity<IncomeReaderDTO> getIncome(@PathVariable Long id) {
         try {
-            return ResponseEntity.ok(categorieService.gtCategorieById(id));
+            return ResponseEntity.ok(incomeService.gtIncomeById(id));
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<CategorieReaderDTO> insertCategorie(@Valid @RequestBody CategorieWriterDTO categorie) {
+    public ResponseEntity<IncomeReaderDTO> insertIncome(@Valid @RequestBody IncomeWriterDTO income) {
         try {
-            return ResponseEntity.ok(categorieService.addCategorie(categorie));
+            return ResponseEntity.ok(incomeService.addIncome(income));
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
         }
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<CategorieReaderDTO> updateCategorie(@Valid @RequestBody CategorieWriterDTO categorie) {
+    public ResponseEntity<IncomeReaderDTO> updateIncome(@Valid @RequestBody IncomeWriterDTO income) {
         try {
-            return ResponseEntity.ok(categorieService.updCategorie(categorie));
+            return ResponseEntity.ok(incomeService.updIncome(income));
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
         }
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteCategorie(@PathVariable Long id) {
+    public ResponseEntity<String> deleteIncome(@PathVariable Long id) {
         try {
-            categorieService.dltCategorie(id);
-            return ResponseEntity.ok("categorie eliminado");
+            incomeService.dltIncome(id);
+            return ResponseEntity.ok("income eliminado");
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
         }
     }
-} 
+}
