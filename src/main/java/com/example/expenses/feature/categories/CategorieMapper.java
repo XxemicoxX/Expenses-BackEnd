@@ -1,7 +1,10 @@
 package com.example.expenses.feature.categories;
 
+import org.springframework.stereotype.Component;
+
 import com.example.expenses.util.Mapper;
 
+@Component
 public class CategorieMapper implements Mapper<Categorie, CategorieWriterDTO, CategorieReaderDTO>{
     @Override
     public Categorie toEntity(CategorieWriterDTO dto){

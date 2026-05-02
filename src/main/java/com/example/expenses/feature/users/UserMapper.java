@@ -1,7 +1,10 @@
 package com.example.expenses.feature.users;
 
+import org.springframework.stereotype.Component;
+
 import com.example.expenses.util.Mapper;
 
+@Component
 public class UserMapper implements Mapper<User, UserWriterDTO, UserReaderDTO>{
     @Override
     public User toEntity(UserWriterDTO dto) {

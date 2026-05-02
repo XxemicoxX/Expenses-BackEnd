@@ -40,12 +40,12 @@ public class Spent {
     private LocalDate date;
     private LocalTime hour;
     @ManyToOne
-    @JoinColumn(name = "id_payment_method", nullable = false)
+    @JoinColumn(name = "id_payment", nullable = false)
     private Payment payment;
     @ManyToOne
     @JoinColumn(name = "id_categorie", nullable = false)
     private Categorie categorie;
     @ManyToOne
-    @JoinColumn(name = "id_categorie", nullable = false)
+    @JoinColumn(name = "id_user", nullable = false)
     private User user;
 }
