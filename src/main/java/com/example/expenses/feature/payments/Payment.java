@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_payment_method")
+    @Column(name = "id_payment")
     private Long id;
     @Column(nullable = false, length = 50)
     private String name;

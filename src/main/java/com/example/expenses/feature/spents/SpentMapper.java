@@ -3,6 +3,7 @@ import org.springframework.stereotype.Component;
 
 import com.example.expenses.feature.categories.Categorie;
 import com.example.expenses.feature.payments.Payment;
+import com.example.expenses.feature.users.User;
 import com.example.expenses.util.Mapper;
 
 @Component
@@ -19,6 +20,7 @@ public class SpentMapper implements Mapper<Spent, SpentWriterDTO, SpentReaderDTO
             .hour(dto.hour())
             .payment(Payment.builder().id(dto.payment().getId()).build())
             .categorie(Categorie.builder().id(dto.categorie().getId()).build())
+            .user(User.builder().id(dto.user().getId()).build())
             .build();
     }
 
@@ -32,7 +34,8 @@ public class SpentMapper implements Mapper<Spent, SpentWriterDTO, SpentReaderDTO
             entity.getDate(),
             entity.getHour(),
             entity.getPayment().getId(),
-            entity.getCategorie().getId()
+            entity.getCategorie().getId(),
+            entity.getUser().getId()
         );
     }
 }

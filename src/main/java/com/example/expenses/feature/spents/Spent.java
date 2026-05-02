@@ -5,6 +5,7 @@ import java.time.LocalTime;
 
 import com.example.expenses.feature.categories.Categorie;
 import com.example.expenses.feature.payments.Payment;
+import com.example.expenses.feature.users.User;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -44,4 +45,7 @@ public class Spent {
     @ManyToOne
     @JoinColumn(name = "id_categorie", nullable = false)
     private Categorie categorie;
+    @ManyToOne
+    @JoinColumn(name = "id_categorie", nullable = false)
+    private User user;
 }

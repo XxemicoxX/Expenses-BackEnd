@@ -5,6 +5,7 @@ import java.time.LocalTime;
 
 import com.example.expenses.feature.categories.Categorie;
 import com.example.expenses.feature.payments.Payment;
+import com.example.expenses.feature.users.User;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.validation.constraints.NotBlank;
@@ -25,7 +26,9 @@ public record SpentWriterDTO(
     Payment payment,
     @NotNull(message = "Debe seleccionar una categoria")
     @JsonProperty("id_categorie")
-    Categorie categorie
+    Categorie categorie,
+    @JsonProperty("id_user")
+    User user
 ) {
 
 }

@@ -15,7 +15,9 @@ public record SpentReaderDTO(
     @JsonProperty("id_payment_method")
     Long payment,
     @JsonProperty("id_categorie")
-    Long categorie
+    Long categorie,
+    @JsonProperty("id_user")
+    Long user
 ) {
 
 }
