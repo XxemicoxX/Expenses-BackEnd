@@ -22,11 +22,10 @@ import lombok.NoArgsConstructor;
 public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_payment")
-    private Long id;
+    private Long idPayment;
     @Column(nullable = false, length = 50)
     private String name;
     @ManyToOne
-    @JoinColumn(name = "id_type", nullable = false)
+    @JoinColumn(name = "idType", nullable = false)
     private Type type;
 }

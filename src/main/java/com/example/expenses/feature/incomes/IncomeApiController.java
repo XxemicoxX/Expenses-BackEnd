@@ -45,8 +45,12 @@ public class IncomeApiController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<IncomeReaderDTO> insertIncome(@Valid @RequestBody IncomeWriterDTO income) {
         try {
+            System.out.println("DTO recibido: " + income);
+            System.out.println("idUser: " + income.idUser());
             return ResponseEntity.ok(incomeService.addIncome(income));
         } catch (Exception e) {
+            System.out.println("ERROR: " + e.getMessage());
+            e.printStackTrace();
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
         }
     }

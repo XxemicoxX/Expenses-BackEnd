@@ -29,8 +29,7 @@ import lombok.NoArgsConstructor;
 public class Spent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_spent")
-    private Long id;
+    private Long idSpent;
     @Column(nullable = false, length = 100)
     private String name;
     @Column(nullable = false)
@@ -40,12 +39,12 @@ public class Spent {
     private LocalDate date;
     private LocalTime hour;
     @ManyToOne
-    @JoinColumn(name = "id_payment", nullable = false)
+    @JoinColumn(name = "idPayment", nullable = false)
     private Payment payment;
     @ManyToOne
-    @JoinColumn(name = "id_categorie", nullable = false)
+    @JoinColumn(name = "idCategorie", nullable = false)
     private Categorie categorie;
     @ManyToOne
-    @JoinColumn(name = "id_user", nullable = false)
+    @JoinColumn(name = "idUser", nullable = false)
     private User user;
 }

@@ -10,18 +10,18 @@ public class PaymentMapper implements Mapper<Payment, PaymentWriterDTO, PaymentR
     @Override
     public Payment toEntity(PaymentWriterDTO dto) {
         return Payment.builder()
-            .id(dto.id())
+            .idPayment(dto.id())
             .name(dto.name())
-            .type(Type.builder().id(dto.type()).build())
+            .type(Type.builder().idType(dto.idType()).build())
             .build();
     }
 
     @Override
     public PaymentReaderDTO toDto(Payment entity) {
         return new PaymentReaderDTO(
-            entity.getId(),
+            entity.getIdPayment(),
             entity.getName(),
-            entity.getType().getId()
+            entity.getType().getIdType()
         );
     }
 }

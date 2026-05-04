@@ -1,6 +1,5 @@
 package com.example.expenses.feature.payments;
 
-import com.example.expenses.feature.types.Type;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.validation.constraints.NotBlank;
@@ -11,8 +10,8 @@ public record PaymentWriterDTO(
     @NotBlank(message = "Debe ingresar el nombre")
     String name,
     @NotNull(message = "Debe seleccionar un tipo")
-    @JsonProperty("id_type")
-    Long type
+    @JsonProperty("idType")
+    Long idType
 ) {
 
 }

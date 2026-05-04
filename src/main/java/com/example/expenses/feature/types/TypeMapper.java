@@ -9,7 +9,7 @@ public class TypeMapper implements Mapper<Type, TypeWriterDTO, TypeReaderDTO>{
     @Override
     public Type toEntity(TypeWriterDTO dto) {
         return Type.builder()
-        .id(dto.id())
+        .idType(dto.idType())
         .name(dto.name())
         .description(dto.description())
         .build();
@@ -18,7 +18,7 @@ public class TypeMapper implements Mapper<Type, TypeWriterDTO, TypeReaderDTO>{
     @Override
     public TypeReaderDTO toDto(Type entity) {
         return new TypeReaderDTO(
-            entity.getId(),
+            entity.getIdType(),
             entity.getName(),
             entity.getDescription()
         );

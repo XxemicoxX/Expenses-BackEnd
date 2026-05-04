@@ -24,8 +24,7 @@ import lombok.NoArgsConstructor;
 public class Income {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_income")
-    private Long id;
+    private Long idIncome;
     @Column(nullable = false)
     private Double amount;
     @Column(nullable = false, length = 50, unique = true)
@@ -34,6 +33,6 @@ public class Income {
     @Column(nullable = false, length = 50)
     private String description;
     @ManyToOne
-    @JoinColumn (name = "id_usuario")
+    @JoinColumn(name = "idUser", nullable = false)
     private User user;
 }

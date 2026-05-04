@@ -25,7 +25,7 @@ public class IncomeService {
     }
 
     public IncomeReaderDTO updIncome(IncomeWriterDTO income) throws Exception {
-        if (!incomeRepository.existsById(income.id())) {
+        if (!incomeRepository.existsById(income.idIncome())) {
             throw new Exception("ID no encontrado");
         }
         return save(income);

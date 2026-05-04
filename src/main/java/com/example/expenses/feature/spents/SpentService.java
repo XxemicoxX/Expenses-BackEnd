@@ -25,7 +25,7 @@ public class SpentService {
     }
 
     public SpentReaderDTO updSpent(SpentWriterDTO spent) throws Exception {
-        if (!spentRepository.existsById(spent.id())) {
+        if (!spentRepository.existsById(spent.idSpent())) {
             throw new Exception("ID no encontrado");
         }
         return save(spent);

@@ -11,24 +11,24 @@ public class IncomeMapper implements Mapper<Income, IncomeWriterDTO, IncomeReade
     @Override
     public Income toEntity(IncomeWriterDTO dto) {
         return Income.builder()
-            .id(dto.id())
+            .idIncome(dto.idIncome())
             .amount(dto.amount())
             .source(dto.source())
             .date(dto.date())
             .description(dto.description())
-            .user(User.builder().id(dto.id()).build())
+            .user(User.builder().idUser(dto.idUser()).build())
             .build();
     }
 
     @Override
     public IncomeReaderDTO toDto(Income entity) {
         return new IncomeReaderDTO(
-            entity.getId(),
+            entity.getIdIncome(),
             entity.getAmount(),
             entity.getSource(),
             entity.getDate(),
             entity.getDescription(),
-            entity.getUser().getId()
+            entity.getUser().getIdUser()
         );
     }
 }

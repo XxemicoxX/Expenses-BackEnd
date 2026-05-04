@@ -12,7 +12,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public record SpentWriterDTO(
-    Long id,
+    Long idSpent,
     @NotBlank(message = "Debe ingresar el nombre")
     String name,
     @NotNull(message = "Debe ingresar el monto")
@@ -22,13 +22,13 @@ public record SpentWriterDTO(
     LocalDate date,
     LocalTime hour,
     @NotNull(message = "Debe seleccionar un pago")
-    @JsonProperty("id_payment_method")
-    Payment payment,
+    @JsonProperty("idPayment")
+    Payment idPayment,
     @NotNull(message = "Debe seleccionar una categoria")
-    @JsonProperty("id_categorie")
-    Categorie categorie,
-    @JsonProperty("id_user")
-    User user
+    @JsonProperty("idCategorie")
+    Categorie idCategorie,
+    @JsonProperty("idUser")
+    Long idUser
 ) {
 
 }

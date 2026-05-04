@@ -27,7 +27,7 @@ public class TypeService {
     }
 
     public TypeReaderDTO updType(TypeWriterDTO type) throws Exception{
-        if (!typeRepository.existsById(type.id())) {
+        if (!typeRepository.existsById(type.idType())) {
             throw new Exception("ID no encontrado");
         }
         return save(type);

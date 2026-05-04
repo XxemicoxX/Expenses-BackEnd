@@ -6,18 +6,18 @@ import java.time.LocalTime;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public record SpentReaderDTO(
-    Long id,
+    Long idSpent,
     String name,
     Double amount,
     String description,
     LocalDate date,
     LocalTime hour,
-    @JsonProperty("id_payment_method")
-    Long payment,
-    @JsonProperty("id_categorie")
-    Long categorie,
-    @JsonProperty("id_user")
-    Long user
+    @JsonProperty("idPayment")
+    Long idPayment,
+    @JsonProperty("idCategorie")
+    Long idCategorie,
+    @JsonProperty("idUser")
+    Long idUser
 ) {
 
 }

@@ -54,8 +54,12 @@ public class TypeApiController {
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<TypeReaderDTO> updateType(@Valid @RequestBody TypeWriterDTO type) {
         try {
+            System.out.println("DTO recibido: " + type);
+            System.out.println("ID: " + type.idType());
             return ResponseEntity.ok(typeService.updType(type));
         } catch (Exception e) {
+            System.out.println("ERROR: " + e.getMessage());
+            e.printStackTrace();
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
         }
     }

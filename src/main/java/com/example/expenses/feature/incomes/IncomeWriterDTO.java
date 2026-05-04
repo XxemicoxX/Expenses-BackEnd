@@ -9,7 +9,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public record IncomeWriterDTO(
-    Long id,
+    Long idIncome,
     @NotNull(message = "Debe ingresar el monto")
     Double amount,
     @NotBlank(message = "Debe ingresar la fuente")
@@ -18,8 +18,8 @@ public record IncomeWriterDTO(
     @NotBlank(message = "Ingrese una descripcion breve")
     String description,
     @NotNull(message = "Debe asignar un usuario")
-    @JsonProperty("id_user")
-    User user
+    @JsonProperty("idUser")
+    Long idUser
 ) {
 
 }

@@ -9,7 +9,7 @@ public class CategorieMapper implements Mapper<Categorie, CategorieWriterDTO, Ca
     @Override
     public Categorie toEntity(CategorieWriterDTO dto){
         return Categorie.builder()
-        .id(dto.id())
+        .idCategorie(dto.idCategorie())
         .name(dto.name())
         .description(dto.description())
         .build();
@@ -18,7 +18,7 @@ public class CategorieMapper implements Mapper<Categorie, CategorieWriterDTO, Ca
     @Override
     public CategorieReaderDTO toDto(Categorie entity) {
         return new CategorieReaderDTO(
-            entity.getId(),
+            entity.getIdCategorie(),
             entity.getName(),
             entity.getDescription()
         );

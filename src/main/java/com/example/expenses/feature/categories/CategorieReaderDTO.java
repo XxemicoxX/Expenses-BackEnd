@@ -1,7 +1,7 @@
 package com.example.expenses.feature.categories;
 
 public record CategorieReaderDTO(
-    Long id,
+    Long idCategorie,
     String name,
     String description
 ) {

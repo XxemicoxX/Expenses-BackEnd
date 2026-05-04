@@ -12,30 +12,30 @@ public class SpentMapper implements Mapper<Spent, SpentWriterDTO, SpentReaderDTO
     @Override
     public Spent toEntity(SpentWriterDTO dto) {
         return Spent.builder()
-            .id(dto.id())
+            .idSpent(dto.idSpent())
             .name(dto.name())
             .amount(dto.amount())
             .description(dto.description())
             .date(dto.date())
             .hour(dto.hour())
-            .payment(Payment.builder().id(dto.payment().getId()).build())
-            .categorie(Categorie.builder().id(dto.categorie().getId()).build())
-            .user(User.builder().id(dto.user().getId()).build())
+            .payment(Payment.builder().idPayment(dto.idPayment().getIdPayment()).build())
+            .categorie(Categorie.builder().idCategorie(dto.idCategorie().getIdCategorie()).build())
+            .user(User.builder().idUser(dto.idUser()).build())
             .build();
     }
 
     @Override
     public SpentReaderDTO toDto(Spent entity) {
         return new SpentReaderDTO(
-            entity.getId(),
+            entity.getIdSpent(),
             entity.getName(),
             entity.getAmount(),
             entity.getDescription(),
             entity.getDate(),
             entity.getHour(),
-            entity.getPayment().getId(),
-            entity.getCategorie().getId(),
-            entity.getUser().getId()
+            entity.getPayment().getIdPayment(),
+            entity.getCategorie().getIdCategorie(),
+            entity.getUser().getIdUser()
         );
     }
 }

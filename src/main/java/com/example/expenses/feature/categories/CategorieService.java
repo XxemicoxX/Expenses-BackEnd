@@ -25,7 +25,7 @@ public class CategorieService {
     }
 
     public CategorieReaderDTO updCategorie(CategorieWriterDTO categorie) throws Exception{
-        if (!categorieRepository.existsById(categorie.id())) {
+        if (!categorieRepository.existsById(categorie.idCategorie())) {
             throw new Exception("ID no encontrado");
         }
         return save(categorie);

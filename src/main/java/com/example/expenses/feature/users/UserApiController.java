@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("users")
 @RequiredArgsConstructor
 public class UserApiController {
-    private final UserService userService;
+     private final UserService userService;
 
      @GetMapping()
      public ResponseEntity<List<UserReaderDTO>> getAll() {

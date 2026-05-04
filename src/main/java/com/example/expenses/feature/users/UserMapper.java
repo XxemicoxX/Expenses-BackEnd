@@ -9,7 +9,7 @@ public class UserMapper implements Mapper<User, UserWriterDTO, UserReaderDTO>{
     @Override
     public User toEntity(UserWriterDTO dto) {
         return User.builder()
-        .id(dto.id())
+        .idUser(dto.idUser())
         .name(dto.name())
         .email(dto.email())
         .password(dto.password())
@@ -20,7 +20,7 @@ public class UserMapper implements Mapper<User, UserWriterDTO, UserReaderDTO>{
     @Override
     public UserReaderDTO toDto(User entity) {
        return new UserReaderDTO(
-        entity.getId(),
+        entity.getIdUser(),
         entity.getName(),
         entity.getEmail(),
         entity.getPassword(),

@@ -8,7 +8,7 @@ import jakarta.validation.constraints.NotBlank;
 
 
 public record UserWriterDTO(
-    Long id,
+    Long idUser,
     @NotBlank(message = "Debes ingresar el nombre")
     String name,
     @NotBlank(message = "Debes ingresar el correo")
@@ -16,7 +16,6 @@ public record UserWriterDTO(
     String email,
     @NotBlank(message = "Debes ingresar una contraseña")
     String password,
-    @JsonProperty("id_role")
     @NotBlank(message = "Debes ingresar un rol")
     RoleSystem role
 ) {
