@@ -43,4 +43,9 @@ public class UserService {
     private UserReaderDTO save(UserWriterDTO user) {
         return userMapper.toDto(userRepository.save(userMapper.toEntity(user)));
     }
+
+    public User getUserByEmail(String email) {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+    }
 }
