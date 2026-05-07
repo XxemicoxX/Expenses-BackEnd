@@ -18,8 +18,8 @@ public class SpentMapper implements Mapper<Spent, SpentWriterDTO, SpentReaderDTO
             .description(dto.description())
             .date(dto.date())
             .hour(dto.hour())
-            .payment(Payment.builder().idPayment(dto.idPayment().getIdPayment()).build())
-            .categorie(Categorie.builder().idCategorie(dto.idCategorie().getIdCategorie()).build())
+            .payment(Payment.builder().idPayment(dto.idPayment()).build())
+            .categorie(Categorie.builder().idCategorie(dto.idCategorie()).build())
             .user(User.builder().idUser(dto.idUser()).build())
             .build();
     }

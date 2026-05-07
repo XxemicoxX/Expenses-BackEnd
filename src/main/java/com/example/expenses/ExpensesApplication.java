@@ -3,14 +3,17 @@ package com.example.expenses;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.example.expenses.config.JwtConfig;
 import com.example.expenses.feature.users.User;
 import com.example.expenses.feature.users.UserRepository;
 import com.example.expenses.util.RoleSystem;
 
 @SpringBootApplication
+@EnableConfigurationProperties(JwtConfig.class)
 public class ExpensesApplication {
 
 	public static void main(String[] args) {

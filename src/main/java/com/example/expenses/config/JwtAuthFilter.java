@@ -24,73 +24,67 @@ import lombok.RequiredArgsConstructor;
 @Component
 @RequiredArgsConstructor
 public class JwtAuthFilter extends OncePerRequestFilter {
-    
+
     private final JwtService jwtService;
     private final CustomUserService userDetailsService;
-    
+
     @Override
     protected void doFilterInternal(
             @NonNull HttpServletRequest request,
             @NonNull HttpServletResponse response,
-            @NonNull FilterChain filterChain
-    ) throws ServletException, IOException {
-        
-        // OPTIONS ya se maneja en SimpleCorsFilter, pero por si acaso
+            @NonNull FilterChain filterChain) throws ServletException, IOException {
+
+        System.out.println("=== REQUEST: " + request.getMethod() + " " + request.getRequestURI());
+
         if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
             filterChain.doFilter(request, response);
             return;
         }
-        
+
         final String authHeader = request.getHeader("Authorization");
-        
+        System.out.println("=== AUTH HEADER: " + authHeader);
+
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            System.out.println("=== NO TOKEN, pasando sin autenticar");
             filterChain.doFilter(request, response);
             return;
         }
-        
+
         try {
             final String jwt = authHeader.substring(7);
             final String userEmail = jwtService.extractUsername(jwt);
-            
+            System.out.println("=== EMAIL DEL TOKEN: " + userEmail);
+
             if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
                 UserDetails userDetails = userDetailsService.loadUserByUsername(userEmail);
-                
-                if (jwtService.isTokenValid(jwt, userDetails)) {
+                System.out.println("=== USER ENCONTRADO: " + userDetails.getUsername());
+
+                boolean isValid = jwtService.isTokenValid(jwt, userDetails);
+                System.out.println("=== TOKEN VÁLIDO: " + isValid);
+
+                if (isValid) {
                     List<String> roles = jwtService.extractRoles(jwt);
-                    
-                    System.out.println("=== JWT VÁLIDO ===");
-                    System.out.println("Email: " + userEmail);
-                    System.out.println("Roles del token: " + roles);
-                    
-                    // Asegurar prefijo ROLE_
+                    System.out.println("=== ROLES: " + roles);
+
                     List<SimpleGrantedAuthority> authorities = roles.stream()
                             .map(role -> {
                                 String authority = role.startsWith("ROLE_") ? role : "ROLE_" + role;
-                                System.out.println("Authority: " + authority);
                                 return new SimpleGrantedAuthority(authority);
                             })
                             .toList();
-                    
-                    UsernamePasswordAuthenticationToken authToken =
-                            new UsernamePasswordAuthenticationToken(
-                                    userDetails,
-                                    null,
-                                    authorities
-                            );
-                    
-                    authToken.setDetails(
-                            new WebAuthenticationDetailsSource().buildDetails(request)
-                    );
-                    
+
+                    UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
+                            userDetails, null, authorities);
+                    authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                     SecurityContextHolder.getContext().setAuthentication(authToken);
-                    System.out.println("=== AUTENTICACIÓN EXITOSA ===");
+                    System.out.println("=== AUTENTICACIÓN SETEADA ✓");
                 }
             }
         } catch (Exception e) {
-            System.err.println("❌ Error en JWT Filter: " + e.getMessage());
+            System.err.println("=== ERROR EN FILTER: " + e.getMessage());
             e.printStackTrace();
         }
-        
+
         filterChain.doFilter(request, response);
     }
 }

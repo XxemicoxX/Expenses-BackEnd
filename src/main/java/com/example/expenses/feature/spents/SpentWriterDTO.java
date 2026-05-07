@@ -3,9 +3,6 @@ package com.example.expenses.feature.spents;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import com.example.expenses.feature.categories.Categorie;
-import com.example.expenses.feature.payments.Payment;
-import com.example.expenses.feature.users.User;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.validation.constraints.NotBlank;
@@ -23,10 +20,10 @@ public record SpentWriterDTO(
     LocalTime hour,
     @NotNull(message = "Debe seleccionar un pago")
     @JsonProperty("idPayment")
-    Payment idPayment,
+    Long idPayment,
     @NotNull(message = "Debe seleccionar una categoria")
     @JsonProperty("idCategorie")
-    Categorie idCategorie,
+    Long idCategorie,
     @JsonProperty("idUser")
     Long idUser
 ) {
