@@ -65,7 +65,8 @@ public class CategorieApiController {
             categorieService.dltCategorie(id);
             return ResponseEntity.ok("categorie eliminado");
         } catch (Exception e) {
+            e.printStackTrace(); // ← agrega esto para ver el stack trace completo
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
         }
     }
-} 
+}
